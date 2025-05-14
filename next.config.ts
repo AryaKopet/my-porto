@@ -1,7 +1,13 @@
-import type { NextConfig } from "next";
+// next.config.js
 
-const nextConfig: NextConfig = {
-  /* config options here */
-};
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    // Disable the dev overlay button (circle "N" at bottom-left)
+    serverActions: false, // optional if not used
+    appDir: true,
+    overlay: false
+  }
+}
 
-export default nextConfig;
+module.exports = nextConfig
