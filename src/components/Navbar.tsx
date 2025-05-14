@@ -1,23 +1,44 @@
 'use client'
 
-import Link from 'next/link'
+import { useEffect, useState } from "react"
 
 export default function Navbar() {
+  const [dark, setDark] = useState(false)
+
+  useEffect(() => {
+    // Cek tema yang disimpan di localStorage dan terapkan pada halaman
+    const savedTheme = localStorage.getItem("theme")
+    if (savedTheme === "dark") {
+      document.documentElement.classList.add("dark")
+      setDark(true)
+    } else {
+      document.documentElement.classList.remove("dark")
+      setDark(false)
+    }
+  }, [])
+
+  const toggleDarkMode = () => {
+    const newTheme = dark ? "light" : "dark"
+
+    // Mengubah tema dengan menambah/menanggalkan class "dark"
+    document.documentElement.classList.toggle("dark")
+
+    // Menyimpan tema ke localStorage
+    localStorage.setItem("theme", newTheme)
+
+    // Memperbarui state untuk mengubah ikon
+    setDark(!dark)
+  }
+
   return (
-    <nav className="sticky top-0 z-50 bg-white shadow-md">
-      <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-        <Link href="/" className="text-xl font-bold text-blue-600">
-          Portofolioku
-        </Link>
-        <div className="space-x-4">
-          <Link href="#projects" className="text-gray-600 hover:text-blue-600">
-            Projects
-          </Link>
-          <Link href="#contact" className="text-gray-600 hover:text-blue-600">
-            Contact
-          </Link>
-        </div>
-      </div>
+    <nav className="flex items-center justify-between px-4 py-3 shadow-md dark:bg-neutral-900">
+      <h1 className="text-xl font-bold">Portofolioku</h1>
+      <button
+        onClick={toggleDarkMode}
+        className="text-xl hover:opacity-75 transition"
+      >
+        {dark ? "🌙" : "☀️"}
+      </button>
     </nav>
   )
 }

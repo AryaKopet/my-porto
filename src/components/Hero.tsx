@@ -6,8 +6,8 @@ const words = ["Web Developer", "UI Designer", "Next.js Enthusiast"]
 
 export default function Hero() {
   const [text, setText] = useState("")
-  const [index, setIndex] = useState(0) // index kata
-  const [subIndex, setSubIndex] = useState(0) // index karakter
+  const [index, setIndex] = useState(0)
+  const [subIndex, setSubIndex] = useState(0)
   const [deleting, setDeleting] = useState(false)
   const [blink, setBlink] = useState(true)
 
@@ -21,7 +21,6 @@ export default function Hero() {
         if (subIndex < words[index].length) {
           setSubIndex(prev => prev + 1)
         } else {
-          // tunggu sebelum mulai menghapus
           setTimeout(() => setDeleting(true), 1500)
         }
       } else {
@@ -32,18 +31,22 @@ export default function Hero() {
           setIndex(prev => (prev + 1) % words.length)
         }
       }
-    }, deleting ? 50 : 100) // lebih cepat saat menghapus
+    }, deleting ? 50 : 100)
 
     return () => clearTimeout(timeout)
   }, [subIndex, index, deleting])
 
-  // efek berkedip kursor
   useEffect(() => {
     const blinkInterval = setInterval(() => {
       setBlink(prev => !prev)
     }, 500)
     return () => clearInterval(blinkInterval)
   }, [])
+
+  const scrollToProjects = () => {
+    const section = document.getElementById("projects")
+    if (section) section.scrollIntoView({ behavior: "smooth" })
+  }
 
   return (
     <section className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-blue-50 to-white text-center">
@@ -59,6 +62,13 @@ export default function Hero() {
           </span>
         </span>
       </p>
+
+      <button
+        onClick={scrollToProjects}
+        className="mt-8 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition"
+      >
+        Lihat Proyek
+      </button>
     </section>
   )
 }
