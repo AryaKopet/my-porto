@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* SEMBUNYIKAN TOMBOL NEXT DEV TOOLS */
+[data-nextjs-dev-overlay] {
+  display: none !important;
+}
+
+[data-next-overlay-button] {
+  display: none !important;
+}
