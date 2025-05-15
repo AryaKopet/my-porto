@@ -2,11 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* SEMBUNYIKAN TOMBOL NEXT DEV TOOLS */
-[data-nextjs-dev-overlay] {
-  display: none !important;
+body {
+  @apply bg-white text-black;
 }
-
-[data-next-overlay-button] {
-  display: none !important;
+html.dark body {
+  @apply bg-neutral-900 text-white;
 }
