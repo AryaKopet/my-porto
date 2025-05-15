@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react"
+import "../styles/globals.css"
 
 const words = ["Web Developer", "UI Designer", "Next.js Enthusiast"]
 
@@ -43,32 +44,39 @@ export default function Hero() {
     return () => clearInterval(blinkInterval)
   }, [])
 
-  const scrollToProjects = () => {
-    const section = document.getElementById("projects")
-    if (section) section.scrollIntoView({ behavior: "smooth" })
-  }
-
   return (
-    <section className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-blue-50 to-white text-center">
-      <h1 className="text-5xl font-bold text-gray-900">
-        Hi, I'm <span className="text-blue-500">Arya Wijaya</span>
-      </h1>
-      <p className="text-2xl mt-4 text-gray-600">
-        I'm a{" "}
-        <span className="font-semibold text-blue-600">
-          {text}
-          <span className="border-r-2 border-blue-600 ml-1">
-            {blink ? " " : ""}
-          </span>
-        </span>
-      </p>
+    <section className="relative flex flex-col-reverse md:flex-row items-center justify-center min-h-[85vh] px-6 md:px-20 pt-20 md:pt-24 overflow-hidden bg-gradient-to-br from-blue-50 to-white dark:from-gray-900 dark:to-gray-800">
 
-      {/* <button
-        onClick={scrollToProjects}
-        className="mt-8 px-6 py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition"
-      >
-        Lihat Proyek
-      </button> */}
+      {/* Animasi Latar Belakang Gradient */}
+      <div className="absolute inset-0 -z-10 bg-[length:400%_400%] bg-gradient-to-r from-blue-300 via-purple-200 to-pink-200 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900 animate-[gradient_8s_ease_infinite]" />
+
+      {/* TEKS KIRI */}
+      <div className="text-center md:text-left md:w-1/2 z-10">
+        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+          Hi, I'm <span className="text-blue-500 dark:text-blue-400">Arya Wijaya</span>
+        </h1>
+        <p className="text-xl md:text-2xl mt-4 text-gray-600 dark:text-gray-300">
+          I'm a{" "}
+          <span className="font-semibold text-blue-600 dark:text-blue-400">
+            {text}
+            <span className="border-r-2 border-blue-600 ml-1 dark:border-blue-400">
+              {blink ? " " : ""}
+            </span>
+          </span>
+        </p>
+        <p className="mt-4 text-gray-500 dark:text-gray-400 text-sm md:text-base max-w-md">
+          Membangun pengalaman digital yang modern dan efisien melalui teknologi web yang handal dan desain yang menarik.
+        </p>
+      </div>
+
+      {/* AVATAR KANAN */}
+      <div className="mb-10 md:mb-0 md:ml-12 md:w-1/2 flex justify-center z-10">
+        <img
+          src="/images/avatar.jpg"
+          alt="Arya Avatar"
+          className="w-72 h-72 md:w-80 md:h-80 rounded-full shadow-2xl border-4 border-blue-200 object-cover animate-float"
+        />
+      </div>
     </section>
   )
 }

@@ -28,6 +28,16 @@ const tools: Tool[] = [
     link: "https://nextjs.org/",
   },
   {
+    name: "TypeScript",
+    image: "https://cdn.worldvectorlogo.com/logos/typescript.svg",
+    link: "https://www.typescriptlang.org/",
+  },
+  {
+    name: "Golang",
+    image: "../images/go-logo-1.svg",
+    link: "https://go.dev/",
+  },
+  {
     name: "Tailwind CSS",
     image: "https://cdn.worldvectorlogo.com/logos/tailwind-css-2.svg",
     link: "https://tailwindcss.com/",
@@ -52,12 +62,17 @@ const tools: Tool[] = [
     image: "https://cdn.worldvectorlogo.com/logos/prisma-3.svg",
     link: "https://www.prisma.io/",
   },
+  {
+    name: "Docker",
+    image: "../images/docker-4.svg",
+    link: "https://www.docker.com/",
+  },
 ];
 
 export default function Tools() {
   return (
     <section className="my-20 px-4 text-center">
-      <h2 className="text-3xl font-bold mb-8">Tools Pengembangan</h2>
+      <h2 className="text-3xl font-bold mb-8">During Learning</h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center">
         {tools.map((tool, index) => (
           <a

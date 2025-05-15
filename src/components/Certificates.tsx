@@ -1,7 +1,8 @@
-// components/Certificates.tsx
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useSwipeable } from 'react-swipeable';
 
 type Certificate = {
   title: string;
@@ -12,39 +13,57 @@ type Certificate = {
 
 const certificates: Certificate[] = [
   {
-    title: "Belajar Dasar Pemrograman Web",
+    title: "Backend Golang Certification",
     issuer: "Dicoding Indonesia",
-    image: "https://storage.googleapis.com/dicoding-certificate/dummy-cert-1.png",
+    image: "/images/dibimbing-golang.jpg",
     link: "https://www.dicoding.com/certificates/1234567890",
   },
   {
-    title: "React Developer Certification",
-    issuer: "Meta via Coursera",
-    image: "https://res.cloudinary.com/demo/image/upload/v1700000000/react-cert.png",
+    title: "Alibaba Cloud Generative AI",
+    issuer: "Alibaba Cloud",
+    image: "/images/alibaba-generative-ai.jpg",
     link: "https://coursera.org/certificate/abcdefg123",
   },
   {
-    title: "AWS Cloud Practitioner Essentials",
-    issuer: "Amazon Web Services",
-    image: "https://d1.awsstatic.com/training-and-certification/certification-badges/awscertifiedcloudpractitioner.7b6bce7ec1df3c16f50c50cbee3b518f7e35d72d.png",
+    title: "VSGA Junior Web Developer",
+    issuer: "BPSDM Kominfo",
+    image: "/images/vsga.jpg",
     link: "https://aws.training/cert/xyz987654321",
   },
   {
     title: "Front-End Web Development",
     issuer: "FreeCodeCamp",
-    image: "https://design-style-guide.freecodecamp.org/downloads/fcc_primary_small.jpg",
+    image: "/images/portofolio.png",
     link: "https://freecodecamp.org/certificate/sample123",
   },
   {
     title: "Javascript Intermediate",
     issuer: "SoloLearn",
-    image: "https://api2.sololearn.com/v2/certificates/image/ABC123456.png",
+    image: "/images/portofolio.png",
     link: "https://www.sololearn.com/certificates/ABC123456",
   },
   {
     title: "Back-End Development Path",
     issuer: "Codecademy",
-    image: "https://cdn-images.codecademy.com/certificates/sample.png",
+    image: "/images/portofolio.png",
+    link: "https://www.codecademy.com/profiles/sample",
+  },
+  {
+    title: "Front-End Web Development",
+    issuer: "FreeCodeCamp",
+    image: "/images/portofolio.png",
+    link: "https://freecodecamp.org/certificate/sample123",
+  },
+  {
+    title: "Javascript Intermediate",
+    issuer: "SoloLearn",
+    image: "/images/portofolio.png",
+    link: "https://www.sololearn.com/certificates/ABC123456",
+  },
+  {
+    title: "Back-End Development Path",
+    issuer: "Codecademy",
+    image: "/images/portofolio.png",
     link: "https://www.codecademy.com/profiles/sample",
   },
 ];
@@ -53,16 +72,37 @@ const ITEMS_PER_PAGE = 3;
 
 export default function Certificates() {
   const [pageIndex, setPageIndex] = useState(0);
-
+  const [direction, setDirection] = useState(0);
+  const [popupImage, setPopupImage] = useState<string | null>(null);
   const totalPages = Math.ceil(certificates.length / ITEMS_PER_PAGE);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const next = () => {
+    setDirection(1);
     setPageIndex((prev) => (prev + 1) % totalPages);
   };
 
   const prev = () => {
+    setDirection(-1);
     setPageIndex((prev) => (prev - 1 + totalPages) % totalPages);
   };
+
+  const handlers = useSwipeable({
+    onSwipedLeft: next,
+    onSwipedRight: prev,
+    trackMouse: true,
+  });
+
+  useEffect(() => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      next();
+    }, 5000);
+
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [pageIndex]);
 
   const paginatedCerts = certificates.slice(
     pageIndex * ITEMS_PER_PAGE,
@@ -71,49 +111,78 @@ export default function Certificates() {
 
   return (
     <section className="my-20 px-4 text-center">
-      <h2 className="text-3xl font-bold mb-8">Sertifikat</h2>
+      <h2 className="text-3xl font-bold mb-8">Certificates</h2>
 
-      <div className="relative max-w-6xl mx-auto">
-        {/* Tombol prev */}
-        {totalPages > 1 && (
-          <button
-            onClick={prev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-3 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition"
-          >
-            &lt;
-          </button>
-        )}
-
-        {/* Sertifikat */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
-          {paginatedCerts.map((cert, index) => (
-            <a
-              key={index}
-              href={cert.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group bg-white dark:bg-neutral-900 p-4 rounded-xl shadow-md hover:shadow-xl transition-transform hover:scale-105"
+      <div className="relative max-w-6xl mx-auto overflow-hidden pb-12" {...handlers}>
+        <div className="relative h-full">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={pageIndex}
+              initial={{ x: direction > 0 ? 300 : -300, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: direction > 0 ? -300 : 300, opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
             >
-              <img
-                src={cert.image}
-                alt={cert.title}
-                className="w-full h-40 object-cover rounded-md mb-4 group-hover:opacity-90 transition"
-              />
-              <h3 className="text-lg font-semibold">{cert.title}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">{cert.issuer}</p>
-            </a>
+              {paginatedCerts.map((cert, index) => (
+                <div
+                  key={index}
+                  onClick={() => setPopupImage(cert.image)}
+                  className="group cursor-pointer bg-white dark:bg-neutral-900 p-4 rounded-xl shadow-md hover:shadow-xl transition-transform hover:scale-105"
+                >
+                  <img
+                    src={cert.image}
+                    alt={cert.title}
+                    className="w-full h-40 object-cover rounded-md mb-4 group-hover:opacity-90 transition"
+                  />
+                  <h3 className="text-lg font-semibold">{cert.title}</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{cert.issuer}</p>
+                </div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Dot Indicators */}
+        <div className="flex justify-center mt-6 gap-2">
+          {Array.from({ length: totalPages }).map((_, i) => (
+            <button
+              key={i}
+              onClick={() => {
+                setDirection(i > pageIndex ? 1 : -1);
+                setPageIndex(i);
+              }}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                i === pageIndex
+                  ? 'bg-blue-500 scale-125'
+                  : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400'
+              }`}
+            ></button>
           ))}
         </div>
 
-        {/* Tombol next */}
-        {totalPages > 1 && (
-          <button
-            onClick={next}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-3 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition"
-          >
-            &gt;
-          </button>
-        )}
+        {/* Popup Image */}
+        <AnimatePresence>
+          {popupImage && (
+            <motion.div
+              className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setPopupImage(null)}
+            >
+              <motion.img
+                src={popupImage}
+                alt="Popup Certificate"
+                className="max-w-3xl max-h-[80vh] rounded-lg shadow-lg"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ duration: 0.3 }}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );
