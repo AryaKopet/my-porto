@@ -32,7 +32,7 @@ export default function Navbar() {
 
   return (
     <nav className="flex items-center justify-between px-4 py-3 shadow-md dark:bg-neutral-900">
-      <h1 className="text-xl font-bold">Portofolioku</h1>
+      <h1 className="text-xl font-bold">My Personal Portfolio</h1>
       <button
         onClick={toggleDarkMode}
         className="text-xl hover:opacity-75 transition"

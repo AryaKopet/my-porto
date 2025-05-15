@@ -1,6 +1,8 @@
 import Hero from "../components/Hero";
 import Projects from "../components/Project";
-import Tools from "../components/Tools"; 
+import Tools from "../components/Tools";
+import SocialLinks from "../components/SocialLinks";
+import Certificates from "../components/Certificates";
 import "../styles/globals.css"
 
 export default function Home() {
@@ -9,6 +11,9 @@ export default function Home() {
       <Hero />
       <Projects />
       <Tools />
+      <Certificates />
+      <SocialLinks />
     </>
   )
 }
+
