@@ -34,7 +34,7 @@ const tools: Tool[] = [
   },
   {
     name: "Golang",
-    image: "../images/go-logo-1.svg",
+    image: "../images/icons/go-logo-1.svg",
     link: "https://go.dev/",
   },
   {
@@ -64,7 +64,7 @@ const tools: Tool[] = [
   },
   {
     name: "Docker",
-    image: "../images/docker-4.svg",
+    image: "../images/icons/docker-4.svg",
     link: "https://www.docker.com/",
   },
 ];

@@ -11,15 +11,15 @@ type ProjectProps = {
 
 const projects: ProjectProps[] = [
   {
-    title: "Portofolio Website",
-    description: "Website portofolio modern dengan Next.js dan Tailwind CSS.",
-    image: "/images/portofolio.png",
+    title: "Personal Portofolio",
+    description: "Website portofolio responsif modern dengan menggunakan teknologi Next.js dan Tailwind CSS.",
+    image: "/images/projects/web_portofolio.png",
     link: "https://contoh.com/portofolio",
   },
   {
-    title: "Toko Online",
-    description: "Aplikasi e-commerce sederhana berbasis React dan Firebase.",
-    image: "/images/portofolio.png",
+    title: "Dashboard Manajemen Pesanan",
+    description: "Sebuah sistem yang digunakan untuk memanajemen material dan pesanan PT Sugi Harti Indonesia.",
+    image: "/images/projects/dashboard_sugi.png",
     link: "https://contoh.com/tokoonline",
   },
   {
