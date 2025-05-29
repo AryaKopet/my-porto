@@ -16,7 +16,7 @@ export default function Footer() {
               <a href="#home" className="hover:text-blue-500 transition-colors">Home</a>
               <a href="#certificates" className="hover:text-blue-500 transition-colors">Certificates</a>
               <a href="#learning" className="hover:text-blue-500 transition-colors">During Learning</a>
-              <a href="#projects" className="hover:text-blue-500 transition-colors">Projects</a>
+              {/* <a href="#projects" className="hover:text-blue-500 transition-colors">Projects</a> */}
             </div>
 
             {/* KANAN - Sosial Media */}
