@@ -53,10 +53,10 @@ export default function Hero() {
       {/* TEKS KIRI */}
       <div className="text-center md:text-left md:w-1/2 z-10">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
-          Hi, I'm <span className="text-blue-500 dark:text-blue-400">Arya Wijaya</span>
+          Hi, I&apos;m <span className="text-blue-500 dark:text-blue-400">Arya Wijaya</span>
         </h1>
         <p className="text-xl md:text-2xl mt-4 text-gray-600 dark:text-gray-300">
-          I'm a{" "}
+          I&apos;m a{" "}
           <span className="font-semibold text-blue-600 dark:text-blue-400">
             {text}
             <span className="border-r-2 border-blue-600 ml-1 dark:border-blue-400">
