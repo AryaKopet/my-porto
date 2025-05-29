@@ -1,4 +1,4 @@
-.![header](./public/images/projects/web_portofolio.png/)
+![header](./public/images/projects/web_portofolio.png/)
 
 # ✨ Modern Personal Portfolio - Built with Next.js 15 + Tailwind CSS 3
 
