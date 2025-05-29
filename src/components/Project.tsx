@@ -15,7 +15,7 @@ const projects: ProjectProps[] = [
     title: "Personal Portofolio",
     description: "Website portofolio responsif modern dengan menggunakan teknologi Next.js dan Tailwind CSS.",
     image: "/images/projects/web_portofolio.png",
-    link: "https://contoh.com/portofolio",
+    link: "https://aryawijaya.vercel.app/",
   },
   {
     title: "Kalkulator Konversi Suhu ",
