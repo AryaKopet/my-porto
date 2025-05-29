@@ -20,7 +20,7 @@ const projects: ProjectProps[] = [
   {
     title: "Kalkulator Konversi Suhu ",
     description: "Sistem ini merupakah sebuah mini project yang saya kerjakan dalam free class saya di Revou Fundamental Course. Sistem ini saya buat menggunakan HTML, CSS, dan JavaScript.",
-    image: "/images/projects/dashboard_sugi.png",
+    image: "/images/projects/kalkulator.png",
     link: "https://revou-fundamental-course.github.io/19-may-25-AryaKopet/",
   },
   {
