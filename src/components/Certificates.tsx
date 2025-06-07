@@ -13,6 +13,12 @@ type Certificate = {
 
 const certificates: Certificate[] = [
   {
+    title: "Software Engineer Fundamental Course", 
+    issuer: "RevoU",
+    image: "/images/certificates/sefc_revou.jpg",
+    link: "https://www.dicoding.com/certificates/1234567890",
+  },
+  {
     title: "Backend Golang Certification",
     issuer: "Dicoding Indonesia",
     image: "/images/certificates/dibimbing-golang.jpg",
